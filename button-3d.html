@@ -1,0 +1,157 @@
+<!-- HTML !-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+
+    <style>
+        .button-3d-pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            outline-offset: 4px;
+            /* outline-offset: 100000px; */
+            transition: filter 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+
+        }
+
+        .button-3d-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: hsl(0deg 0% 0% / 0.25);
+            will-change: transform;
+            transform: translateY(2px);
+            transition:
+                transform
+                600ms
+                cubic-bezier(.3, .7, .4, 1);
+        }
+
+        .button-3d-edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(
+                to left,
+                /* hsl(340deg 100% 16%) 0%,
+                hsl(340deg 100% 32%) 8%,
+                hsl(340deg 100% 32%) 92%,
+                hsl(340deg 100% 16%) 100% */
+                
+                green,
+                rgb(0, 255, 200),
+                rgb(21, 255, 0),
+                yellow
+            );
+        }
+
+        .button-3d-front {
+            display: block;
+            position: relative;
+            padding: 12px 27px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            color: white;
+            /* background: hsl(345deg 100% 47%); */
+            background: rgba(2, 1, 103, 1);
+            will-change: transform;
+            transform: translateY(-4px);
+            transition:
+                transform
+                600ms
+                cubic-bezier(.3, .7, .4, 1);
+
+
+            overflow: hidden;
+            
+        }
+
+        @media (min-width: 768px) {
+            .button-3d-front {
+                font-size: 1.25rem;
+                padding: 12px 42px;
+            }
+        }
+
+        .button-3d-pushable:hover {
+            filter: brightness(110%);
+        }
+
+        .button-3d-pushable:hover .button-3d-front {
+            transform: translateY(-6px);
+            transition:
+                transform
+                250ms
+                cubic-bezier(.3, .7, .4, 1.5);
+        }
+
+        .button-3d-pushable:active .button-3d-front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+        }
+
+        .button-3d-pushable:hover .button-3d-shadow {
+            transform: translateY(4px);
+            transition:
+                transform
+                250ms
+                cubic-bezier(.3, .7, .4, 1.5);
+        }
+
+        .button-3d-pushable:active .button-3d-shadow {
+            transform: translateY(1px);
+            transition: transform 34ms;
+        }
+
+        .button-3d-pushable:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        .button-3d-front::before {
+            content:"";
+            height: 160%;
+            width: 400px;
+            background: rgba(255, 255, 255, 0.5);
+            /* background: rgba(211, 45, 45, 0.3); */
+            position: absolute;
+            top: -20px;
+            transform: translateX(-400px) rotate(-30deg);
+            transition: all .5s;
+        }
+
+
+        .button-3d-front:hover::before {
+            transform: translateX(100px) rotate(-30deg);
+        }
+
+    </style>
+
+
+</head>
+<body>
+    
+    <button class="button-3d-pushable" role="button">
+        <span class="button-3d-shadow"></span>
+        <span class="button-3d-edge"></span>
+        <span class="button-3d-front text">
+            Contact Us
+        </span>
+    </button>
+    
+</body>
+</html>
